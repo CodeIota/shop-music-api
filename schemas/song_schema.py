@@ -1,13 +1,15 @@
-from email.policy import strict
-from typing import Optional
+from typing import List, Optional
 from pydantic import BaseModel
+
+from schemas.genre_schema import GenreInDB
+from schemas.mediaType_schema import MediaTypeInDB
 
 class SongModel(BaseModel):
     Name: Optional[str]
 
 class SongInDB(SongModel):
     Name: str
-    Composer: str
+    # Composer: str
     # Genre: str
 
     class Config:
@@ -15,9 +17,11 @@ class SongInDB(SongModel):
 
 class FullSongData(SongModel):
     Name: str
-    Composer: str 
-    # MediaType: str
-    # Genre: str
+    # Composer: str 
     Milliseconds: int
     Bytes: int
     UnitPrice: float
+    genre: GenreInDB
+    mediaType: MediaTypeInDB
+    class Config:
+        orm_mode = True

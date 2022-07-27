@@ -25,3 +25,4 @@ class SingerRepo:
         singer.songs: list[SongInDB] = db.query(Song).join(Album).join(Singer).\
         filter(Singer.ArtistId == id).all()
         return singer
+        
