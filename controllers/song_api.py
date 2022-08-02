@@ -6,7 +6,7 @@ from schemas.song_schema import FullSongData
 
 song_router = APIRouter()
 
-@song_router.get('/song/{id}', response_model = FullSongData, status_code=status.HTTP_200_OK)
+@song_router.get('/song/{id}', response_model = FullSongData, status_code=status.HTTP_200_OK, name="song:get-song-by-id")
 async def get_full_song_data(id: int, db: Session = Depends(get_db)): 
     song_repo = SongRepo()
 
