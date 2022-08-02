@@ -7,7 +7,7 @@ from schemas.song_schema import SongInDB
 
 class AlbumRepo:
 
-    def get_song_list_from_album(self, *, id: int, db: Session):
+    async def get_song_list_from_album(self, *, id: int, db: Session):
         album: AlbumInDB = db.query(Album).get(id)
         album.songs: list(SongInDB) = db.query(Song).join(Album).filter(Album.AlbumId == id).all()
         return album

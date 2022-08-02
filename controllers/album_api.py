@@ -8,6 +8,6 @@ from schemas.song_schema import FullSongData
 album_router = APIRouter()
 
 @album_router.get('/album/{id}', response_model = AlbumsWithSongs, status_code=status.HTTP_200_OK)
-def get_song_list_from_album(id: int, db: Session = Depends(get_db)): 
+async def get_song_list_from_album(id: int, db: Session = Depends(get_db)): 
     album_repo = AlbumRepo()
-    return album_repo.get_song_list_from_album(id = id, db = db)
+    return await album_repo.get_song_list_from_album(id = id, db = db)

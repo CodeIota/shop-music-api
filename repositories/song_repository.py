@@ -9,7 +9,7 @@ from fastapi import status
 
 
 class SongRepo:
-    def get_full_song_data(self, *, id: int, db: Session) -> FullSongData:
+    async def get_full_song_data(self, *, id: int, db: Session) -> FullSongData:
         
         song: FullSongData = db.query(Song).get(id)
         song.genre: GenreInDB = db.query(Genre).join(Song).filter(Song.TrackId == id).first()
